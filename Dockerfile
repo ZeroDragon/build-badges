@@ -7,6 +7,5 @@ ADD . .
 
 RUN yarn install && yarn check && yarn cache clean
 
-RUN yarn start
-
 EXPOSE 5005
+RUN yarn start
