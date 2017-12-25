@@ -1,11 +1,12 @@
 FROM node:8.9.2
 
-ENV NODE_ENV=production
+LABEL name "build-badges"
 
-WORKDIR  /app
-ADD . .
-
+RUN mkdir /app
+WORKDIR /app
+COPY package.json /app
 RUN yarn install && yarn check && yarn cache clean
+COPY index.js /app
 
 EXPOSE 5005
-RUN yarn start
+CMD ["yarn", "start"]
