@@ -67,7 +67,7 @@ app.get('/github/last-commit/:username/:repo/:branch?.svg', async (req, res) => 
 
 app.get('/custom/:leftText/:rightText/:rC?.svg', async (req, res) => {
   res.set('Content-Type', 'image/svg+xml')
-  res.send(await BuildBadge('custom', req.params))
+  res.send(await BuildBadge('Custom', req.params))
 })
 
 app.listen(5005, () => {

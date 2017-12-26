@@ -8,7 +8,7 @@ const services = {
   NpmVersion,
   NpmLicense,
   LastCommit: require('./services/LastCommit'),
-  custom: require('./services/custom')
+  Custom: require('./services/Custom')
 }
 
 const type = {
