@@ -48,7 +48,7 @@ const BuildBadge = async (service, uri, params = {}) => {
   }
   const processedData = services[service.replace(/\s/g,'')](data) || {status: 'Api error', color: 'red'}
   const payload = {
-    text: [service, processedData.status],
+    text: [serviceName, processedData.status],
     color: type[processedData.color] || {
       right: `#${processedData.color}`
     }
