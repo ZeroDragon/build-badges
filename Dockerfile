@@ -1,6 +1,6 @@
 FROM node:8.9.2
 
-LABEL name "build-badges"
+LABEL name build-badges
 
 RUN mkdir /app
 WORKDIR /app
