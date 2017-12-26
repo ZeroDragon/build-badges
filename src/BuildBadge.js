@@ -36,15 +36,15 @@ const type = {
 
 const BuildBadge = async (service, uri, params = {}) => {
   let data = {}
+  let serviceName = service
   if(service === 'Custom'){
     const {leftText, rightText, rC} = uri
     data = {
       rightText, rC
     }
-    const serviceName = leftText
+    serviceName = leftText
   } else {
     data = await Requester(uri, JSON.stringify(params))
-    const serviceName = service
   }
   const processedData = services[service.replace(/\s/g,'')](data) || {status: 'Api error', color: 'red'}
   const payload = {
