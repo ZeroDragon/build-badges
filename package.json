@@ -5,11 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "memoizee": "^0.4.11",
+    "openbadge": "^1.0.4",
+    "request": "^2.83.0",
+    "time-ago": "^0.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.3"
   }
 }
