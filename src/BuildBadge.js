@@ -36,7 +36,7 @@ const type = {
 
 const BuildBadge = async (service, uri, params = {}) => {
   let data = {}
-  if(service === 'custom'){
+  if(service === 'Custom'){
     const {leftText, rightText, rC} = uri
     data = {
       rightText, rC
