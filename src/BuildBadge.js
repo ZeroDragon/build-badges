@@ -38,9 +38,10 @@ const BuildBadge = async (service, uri, params = {}) => {
   let data = {}
   let serviceName = service
   if(service === 'Custom'){
-    const {leftText, rightText, rC} = uri
+    const {leftText, rightText, color} = uri
+    const [leftColor = '263238', rightColor = '558B2F'] = (color || '').split('-').map(c => c === '' ? undefined : c)
     data = {
-      rightText, rC
+      rightText, leftColor, rightColor
     }
     serviceName = leftText
   } else {
@@ -50,7 +51,8 @@ const BuildBadge = async (service, uri, params = {}) => {
   const payload = {
     text: [serviceName, processedData.status],
     color: type[processedData.color] || {
-      right: `#${processedData.color}`
+      left: `#${processedData.leftColor}`,
+      right: `#${processedData.rightColor}`
     }
   }
   return new Promise(resolve => {

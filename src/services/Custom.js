@@ -1,6 +1,8 @@
-const returnData = ({rightText, rC}) => {
+const returnData = ({rightText, leftColor, rightColor}) => {
+
   return {
-    color: rC || 'green',
+    leftColor,
+    rightColor,
     status: rightText
   }
 }
