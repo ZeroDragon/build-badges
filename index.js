@@ -16,6 +16,7 @@ app.get('/circleci/:vcs/:username/:repo/:branch?.svg', async (req, res) => {
     }
   }
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('CircleCi', uri, params))
 })
 
@@ -26,6 +27,7 @@ app.get('/codecov/:vcs/:username/:repo/:branch?.svg', async (req, res) => {
   const uri = `https://codecov.io/${vcs}/${username}/${repo}${wBranch}/graphs/badge.txt`
   const params = { qs: { token } }
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('CodeCov', uri, params))
 })
 
@@ -38,6 +40,7 @@ app.get('/npm/downloads/:repo.svg', async (req, res) => {
   const today = `${d().getFullYear()}-${addZ(d().getMonth()+1)}-${addZ(d().getDate())}`
   const uri = `https://api.npmjs.org/downloads/range/${init}:${today}/${repo.toLowerCase()}`
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('Npm Downloads', uri, params))
 })
 
@@ -46,6 +49,7 @@ app.get('/npm/version/:repo.svg', async (req, res) => {
   const params = { json: true }
   const uri = `https://registry.npmjs.org/${repo.toLowerCase()}/latest`
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('Npm Version', uri, params))
 })
 
@@ -54,6 +58,7 @@ app.get('/npm/license/:repo.svg', async (req, res) => {
   const params = { json: true }
   const uri = `https://registry.npmjs.org/${repo.toLowerCase()}/latest`
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('Npm License', uri, params))
 })
 
@@ -62,11 +67,13 @@ app.get('/github/last-commit/:username/:repo/:branch?.svg', async (req, res) => 
   const params = { json: true, headers: {'User-Agent': 'build-badges-by-zerodragon'} }
   const uri = `https://api.github.com/repos/${username}/${repo}/commits/${branch}`
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('Last Commit', uri, params))
 })
 
 app.get('/custom/:leftText/:rightText/:color?.svg', async (req, res) => {
   res.set('Content-Type', 'image/svg+xml')
+  res.set('Cache-Control', 'no-cache')
   res.send(await BuildBadge('Custom', req.params))
 })
 
