@@ -8,7 +8,7 @@ const Requester = memoize((uri, params = '{}') => {
       })
     })
   },
-  { maxAge: 1000 * 60 * this.cacheInMinutes }
+  { maxAge: 1000 * 60 }
 )
 
 module.exports = Requester
