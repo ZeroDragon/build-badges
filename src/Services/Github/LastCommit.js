@@ -1,6 +1,8 @@
 const ta = require('time-ago')
 
-const returnData = ({commit}) => {
+const returnData = (data) => {
+  if(!data) return null
+  const {commit} = data
   if(!commit) return null
   if(!commit.author.date) return null
   return {

@@ -1,9 +1,9 @@
-const { colorRange } = require('../helpers')
+const { Range } = require('../../Helpers')
 
 const returnData = (val) => {
   const value = val.trim()
   if(isNaN(value)) return null
-  const color = colorRange(
+  const color = Range(
     parseInt(value, 10)
   ).filter((color, percent) => {
     return percent === parseInt(value, 10)

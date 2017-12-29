@@ -1,0 +1,68 @@
+mixin badgeDisplay(Trace, ServiceName, name)
+  -var title = name || ServiceName
+  .is-divider(data-content="|")
+  .container
+    h3: strong #{title}
+    div: img(v-bind:src=`Services.${ServiceName}.Display`)
+    .field.has-addons
+      block
+      -var key = ServiceName.split('.')
+      -var serviceKey = key[1] || key[0]
+      .contol: a.button.is-info(v-on:click=`generate([${JSON.stringify(Trace)},'${serviceKey}'])`) generate
+    pre
+      |{{Services.#{ServiceName}.Markdown}}
+      |{{Services.#{ServiceName}.HTML}}
+
+doctype html
+html
+  body
+    head
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js')
+      link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css')
+      link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma-extensions@0.5.2/bulma-divider/bulma-divider.min.css')
+      script.
+        const url = '!{url}'
+      title Build Badges
+    body
+      section.section#app.app
+        .container
+          h1.title Build Badges
+          h2.subtitle Add swagg to your repo
+
+        +badgeDisplay([],'CircleCi')
+          .select.control: select(v-model='Services.CircleCi.VCS')
+            option(value='github') Github
+            option(value='bitbucket') Bitbucket
+          .control: input.input(type='text', placeholder='username', v-model='Services.CircleCi.Username')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.CircleCi.Repository')
+          .control: input.input(type='text', placeholder='branch (optional)', v-model='Services.CircleCi.Branch')
+
+        +badgeDisplay([],'CodeCov')
+          .select.control: select(v-model='Services.CodeCov.VCS')
+            option(value='github') Github
+            option(value='bitbucket') Bitbucket
+          .control: input.input(type='text', placeholder='username', v-model='Services.CodeCov.Username')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.CodeCov.Repository')
+          .control: input.input(type='text', placeholder='branch (optional)', v-model='Services.CodeCov.Branch')
+
+        +badgeDisplay(['Github'],'Github.lastCommit','Github: Last Commit')
+          .control: input.input(type='text', placeholder='username', v-model='Services.Github.lastCommit.Username')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.Github.lastCommit.Repository')
+          .control: input.input(type='text', placeholder='branch (optional)', v-model='Services.Github.lastCommit.Branch')
+
+        +badgeDisplay(['Npm'],'Npm.Version','Npm: Version')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.Npm.Version.Repository')
+
+        +badgeDisplay(['Npm'],'Npm.License','Npm: License')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.Npm.License.Repository')
+
+        +badgeDisplay(['Npm'],'Npm.Downloads','Npm: Downloads')
+          .control: input.input(type='text', placeholder='repository', v-model='Services.Npm.Downloads.Repository')
+
+        +badgeDisplay([],'Custom')
+          .control: input.input(type='text', placeholder='LeftText', v-model='Services.Custom.LeftText')
+          .control: input.input(type='text', placeholder='RightText', v-model='Services.Custom.RightText')
+          .control: input.input(type='text', placeholder='LeftColor', v-model='Services.Custom.LeftColor')
+          .control: input.input(type='text', placeholder='RightColor', v-model='Services.Custom.RightColor')
+
+      script(src='/assets/home.js')

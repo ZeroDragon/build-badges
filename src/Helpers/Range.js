@@ -9,7 +9,7 @@ const baseRange = (start, end, step) => {
   }
   return result
 }
-const ranger = (
+const Range = (
   percentage,
   [min, max, step = 1] = [0, 100],
   range = [80, 90, 100],
@@ -26,6 +26,4 @@ const ranger = (
 }
 
 
-module.exports = {
-  colorRange: ranger
-}
+module.exports = Range
