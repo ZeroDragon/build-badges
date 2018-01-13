@@ -1,4 +1,4 @@
 Build Badges
 ============
 
-Easy proxy stuff
+Bring swag to your repo
